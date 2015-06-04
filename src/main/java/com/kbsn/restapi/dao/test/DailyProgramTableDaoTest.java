@@ -62,11 +62,10 @@ public class DailyProgramTableDaoTest {
 			jsonObjList.add(jsonObj);
 		}
 		
-		JsonResult result = new JsonResult("200", "SUCCESS", list.size(), false, 22, jsonObjList);
+		JsonResult result = new JsonResult("200", "SUCCESS", list.size(), false, list.size(), jsonObjList);
 		String str = result.getResultJsonString("true");
 		
 		
 		System.out.println(str);
-		//System.out.println(str);
 	}
 }

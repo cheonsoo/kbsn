@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.Gson;
 import com.kbsn.restapi.dao.DailyProgramTableDao;
+import com.kbsn.restapi.data.DailyProgramTableToJSON;
 import com.kbsn.restapi.data.JsonResult;
 import com.kbsn.restapi.dto.DailyProgramTable;
 
@@ -58,11 +59,21 @@ public class ProgramTableService {
 	@Path("daily")
 	public Response getDailyProgramTable(@QueryParam("date") String date, @QueryParam("channel") String channel, @QueryParam("pretty") String pretty) {
 		
-		List<DailyProgramTable> tableList = dao.getDailyProgramTableByDateAndChannel(date, channel);
-		JsonResult result = new JsonResult("200", "SUCCESS", tableList.size(), false, tableList.size(), tableList);
 		pretty = (pretty != null) ? pretty : "false";
-		String jsonStr = result.getResultJsonString(pretty);
+
+		List<DailyProgramTable> tableList = dao.getDailyProgramTableByDateAndChannel(date, channel);
 		
-		return Response.status(200).entity(jsonStr).build();
+		List<DailyProgramTableToJSON> jsonObjList = new ArrayList<DailyProgramTableToJSON>();
+		for (Object obj : tableList) {
+			DailyProgramTable table = (DailyProgramTable) obj;
+			DailyProgramTableToJSON jsonObj = new DailyProgramTableToJSON(table);
+			jsonObjList.add(jsonObj);
+		}
+		
+		JsonResult result = new JsonResult("200", "SUCCESS", jsonObjList.size(), false, jsonObjList.size(), jsonObjList);
+		String str = result.getResultJsonString(pretty);
+		
+		return Response.status(200).entity(str).build();
 	}
+	
 }
