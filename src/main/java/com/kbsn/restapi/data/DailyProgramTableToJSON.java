@@ -36,6 +36,7 @@ public class DailyProgramTableToJSON {
     	Map<String, String> map = new HashMap<String, String>();
     	map.put("value", "N94");
     	map.put("label", "KBSN W");
+    	map.put("label", table.getChannelName());
     	channel_code = map;
     	double_programming_code = "1";
     	map.clear();
@@ -48,11 +49,13 @@ public class DailyProgramTableToJSON {
     	borad_code = "";
     	program_code = "";
     	programming_date = "20150601";
+    	programming_date = table.getDate();
     	programming_duration_minute = "60";
     	programming_start_time = "05000000";
     	programming_end_time = "06000000";
     	program_sequence_number = "583";
     	program_title = "비타민";
+    	program_title = table.getProgName();
     	map.clear();
     	map.put("value", "00");
     	map.put("label", "본사");
