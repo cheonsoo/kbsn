@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans  xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:mvc="http://www.springframework.org/schema/mvc" 
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+							http://www.springframework.org/schema/mvc/spring-mvc.xsd
+							http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context 
+							http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    
+	<!-- <context:component-scan base-package="com.kbsn" /> -->
+	<context:annotation-config />
+
+
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://202.167.222.209:3306/KBSN" />
+		<property name="username" value="kbsn_user" />
+		<property name="password" value="nobodyknows" />
+	</bean>
+	
+	
+	
+	<bean id="userDao" class="com.kbsn.restapi.dao.USERDaoImpl">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="DailyProgramTableDao" class="com.kbsn.restapi.dao.DailyProgramTableDaoImpl">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	
+	
+	<bean class="com.kbsn.restapi.service.TestService" id="testService" />
+	<bean class="com.kbsn.restapi.service.ProgramTableService" id="programTableService" />
+	
+	
+	
+</beans>
