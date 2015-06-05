@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class DailyProgramTableToJSON {
 	
+	private String uuid;
 	private Map<String, String> channel_code;
 	private String double_programming;
 	private String double_programming_code;
@@ -40,6 +41,9 @@ public class DailyProgramTableToJSON {
     public DailyProgramTableToJSON() {}
     
     public DailyProgramTableToJSON(DailyProgramTable table) {
+    	
+    	uuid = table.getProgCode() + "_" + table.getProgSeqCode();
+    	
     	Map<String, String> map = new HashMap<String, String>();
     	
     	map.put("value", "N94");
@@ -92,7 +96,15 @@ public class DailyProgramTableToJSON {
     	schedule_key = "N88";
     	update_time_date = "08000000";
     }
+    
+	public String getUuid() {
+		return uuid;
+	}
 
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+    
 	public Map<String, String> getChannel_code() {
 		return channel_code;
 	}

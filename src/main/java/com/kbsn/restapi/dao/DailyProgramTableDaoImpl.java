@@ -84,6 +84,7 @@ public class DailyProgramTableDaoImpl implements DailyProgramTableDao {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				table = new DailyProgramTable();
+				table.setProgSeqCode(rs.getInt("PROG_SEQ_CODE"));
 				table.setDailyProgTableKey(rs.getInt("DAILY_PROG_TABLE_KEY"));
 				table.setUUID(rs.getString("UUID"));
 				table.setChannelName(rs.getString("CHANNEL_NAME"));

@@ -17,6 +17,7 @@ public class DailyProgramTable {
 	private String progSubname;
 	private int progRate;
 	private int progCategory;
+	private int progSeqCode;
 	private String license;
 	private String date;
 	private String whoCreated;
@@ -149,5 +150,11 @@ public class DailyProgramTable {
 	}
 	public void setWhenModified(String whenModified) {
 		this.whenModified = whenModified;
+	}
+	public int getProgSeqCode() {
+		return progSeqCode;
+	}
+	public void setProgSeqCode(int progSeqCode) {
+		this.progSeqCode = progSeqCode;
 	}
 }
